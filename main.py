@@ -9,7 +9,7 @@ import torch.nn as nn
 import gradio as gr
 
 from utils import TextDataset,ModelCheckpoint
-from model import TextClassifier,AttentiveBiLSTM
+from model import TextClassifier
 from trainer import Trainer
 from graph import ROC,loss
 
