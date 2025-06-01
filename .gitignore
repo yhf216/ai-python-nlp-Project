@@ -1,0 +1,9 @@
+__pycache__
+.gradio
+/rubbish
+loss.png
+roc.png
+model_parameters.md
+/实验报告
+/models/*
+!/models/test.pth
