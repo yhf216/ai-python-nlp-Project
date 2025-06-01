@@ -12,6 +12,7 @@
 ├── trainer.py
 ├── utils.py
 ├── graph.py
+├── requirements.txt
 └── .gitignore
 ```
 
@@ -24,3 +25,4 @@
 ### 补充
 相比于之前略显抽象的lab，本次大作业甚至属于课程中比较友好的内容。但实际上，个人并不认为认真上完这一人工智能基础课程的同学可以完全独立地完成本地大作业，人工智能相关知识的学习主要靠自己，也希望浙大的这门课程未来可以设置的更好。
 
+若需要使用本地GPU加速，请务必自行安装gpu版本的torch torchvision torchaudio
