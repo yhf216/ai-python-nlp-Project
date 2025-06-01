@@ -25,9 +25,6 @@ class TextClassifier(nn.Module):
         embedded=self.dropout(self.embedding(text))
         output,(hidden,cell)=self.lstm(embedded)
 
-        #合并双向的最后一层隐藏状态
-        #hidden=torch.cat([hidden[-2],hidden[-1]],dim=1)
-
         #处理双向LSTM的隐藏状态
         if self.bidirectional:
             hidden = torch.cat([hidden[-2], hidden[-1]], dim=1) 
