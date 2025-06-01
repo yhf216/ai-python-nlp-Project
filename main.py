@@ -119,7 +119,7 @@ iface=gr.Interface(
         gr.Dropdown([16,32,64,128,256],value=32,label="批次大小"),
         gr.Dropdown([True,False],value=True,label="双向LSTM"),
         gr.Slider(0,1,value=0.4,step=0.01,label="Dropout"),
-        gr.Slider(0,1e-3,value=0,step=1e-9,label="L2正则化系数"),#FIXME:调节不人性化
+        gr.Slider(0,1e-3,value=0,step=1e-9,label="L2正则化系数"),
         gr.Slider(10,2000,value=50,step=10,label="训练轮数"),
         gr.Slider(50,200,value=100,step=50,label="词向量维数"),
         gr.Slider(64,512,value=192,step=64,label="LSTM隐藏层维数"),
@@ -136,5 +136,3 @@ iface=gr.Interface(
 if __name__=="__main__":
     iface.launch()
 
-#未对数据进行处理
-#没有加早停机制
