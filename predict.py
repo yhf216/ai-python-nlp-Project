@@ -66,7 +66,7 @@ def predict(
     #生成ROC曲线
     ROC(all_labels=all_labels,all_preds=all_preds)
     
-    return test_acc,report_df,'roc.png',
+    return test_acc,report_df,'graphs\\roc.png',
 
 iface = gr.Interface(
     fn=predict,
