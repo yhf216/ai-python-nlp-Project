@@ -1,5 +1,4 @@
 from torch.utils.data import DataLoader
-from torch.optim import Adam
 from sklearn.metrics import classification_report
 
 import pandas as pd
@@ -12,7 +11,7 @@ import json
 from utils import TextDataset
 from model import TextClassifier
 from trainer import Trainer
-from graph import ROC,loss
+from graph import ROC
 
 
 def predict(
@@ -22,17 +21,17 @@ def predict(
         batch_size:int=32,
 ):
     #加载词汇表
-    with open(vocab_path, "r", encoding="utf-8") as f:
-        vocab = json.load(f)
+    with open(vocab_path,"r",encoding="utf-8") as f:
+        vocab=json.load(f)
     
     #加载测试数据
-    df = pd.read_excel("datasets\\test.xlsx")
-    test_texts = df['text'].apply(lambda x: list(str(x))).values
-    test_labels = df['label'].map({'positive': 0, 'neutral': 1, 'negative': 2}).values
+    df=pd.read_excel("datasets\\test.xlsx")
+    test_texts=df['text'].apply(lambda x:list(str(x))).values
+    test_labels=df['label'].map({'positive':0,'neutral':1,'negative':2}).values
     
-    # 创建测试数据集和数据加载器
-    test_dataset = TextDataset(test_texts, test_labels, vocab, max_length)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size)
+    #创建测试数据集和数据加载器
+    test_dataset=TextDataset(test_texts,test_labels,vocab,max_length)
+    test_loader=DataLoader(test_dataset,batch_size=batch_size)
 
     device=torch.device('cuda'if torch.cuda.is_available() else 'cpu')
 
