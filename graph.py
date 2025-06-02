@@ -26,7 +26,7 @@ def ROC(all_labels,all_preds):
     plt.ylabel('真阳性率')
     plt.title('多分类ROC曲线')
     plt.legend()
-    plt.savefig('roc.png')
+    plt.savefig('graphs\\roc.png')
 
 #绘制训练曲线
 def loss(train_losses,val_losses):
@@ -37,4 +37,4 @@ def loss(train_losses,val_losses):
     plt.ylabel('损失值')
     plt.title('训练过程损失曲线')
     plt.legend()
-    plt.savefig('loss.png')
+    plt.savefig('graphs\\loss.png')

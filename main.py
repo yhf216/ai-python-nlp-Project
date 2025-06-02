@@ -7,6 +7,7 @@ import numpy as np
 import torch 
 import torch.nn as nn
 import gradio as gr
+import json
 
 from utils import TextDataset,ModelCheckpoint
 from model import TextClassifier
@@ -40,6 +41,10 @@ def main(
         for char in text:
             if char not in vocab:
                 vocab[char]=len(vocab)
+    
+    # 保存词汇表
+    with open("vocab\\vocab.json", "w", encoding="utf-8") as f:
+        json.dump(vocab, f, ensure_ascii=False)
 
     #创建数据集和数据加载器
     train_dataset = TextDataset(train_texts, train_labels, vocab, max_length)
@@ -59,6 +64,15 @@ def main(
         dropout=dropout,
     )
 
+    model_config = {
+        'vocab_size': len(vocab),
+        'embedding_dim': embedding_dim,
+        'hidden_dim': hidden_dim,
+        'output_dim': 3,
+        'bidirectional': bidirectional,
+        'dropout': dropout,
+    }
+
     device=torch.device('cuda'if torch.cuda.is_available() else 'cpu')
 
     #选用交叉熵损失函数，Adam优化算法
@@ -66,7 +80,7 @@ def main(
     optimizer=Adam(model.parameters(),lr=lr,weight_decay=weight_decay)
     trainer=Trainer(model,device,criterion, optimizer)
 
-    model_checkpoint=ModelCheckpoint(save_path="models\\best_model.pth")
+    model_checkpoint=ModelCheckpoint(save_path="models\\best_model.pth",model_config=model_config)
 
     train_losses=[]
     train_accs=[]
@@ -110,7 +124,7 @@ def main(
     #生成损失曲线
     loss(train_losses=train_losses,val_losses=val_losses)
     
-    return max(val_accs),report_df,'roc.png','loss.png'
+    return max(val_accs),report_df,'graphs\\roc.png','graphs\\loss.png'
 
 iface=gr.Interface(
     fn=main,

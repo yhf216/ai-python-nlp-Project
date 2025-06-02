@@ -27,11 +27,15 @@ class TextDataset(Dataset):
     
 #模型保存
 class ModelCheckpoint():
-    def __init__(self,save_path):
+    def __init__(self,save_path,model_config):
         self.save_path=save_path
+        self.model_config=model_config
         self.best_acc=0
         
-    def __call__(self, model,current_acc):
+    def __call__(self,model,current_acc):
         if current_acc>self.best_acc:
             self.best_acc=current_acc
-            torch.save(model.state_dict(),self.save_path)
+            torch.save({
+                'model_state_dict':model.state_dict(),
+                'config':self.model_config},
+                self.save_path)
