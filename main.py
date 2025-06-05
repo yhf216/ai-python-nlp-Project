@@ -47,11 +47,11 @@ def main(
         json.dump(vocab, f, ensure_ascii=False)
 
     #创建数据集和数据加载器
-    train_dataset = TextDataset(train_texts, train_labels, vocab, max_length)
-    val_dataset = TextDataset(val_texts, val_labels, vocab, max_length)
+    train_dataset=TextDataset(train_texts,train_labels,vocab,max_length)
+    val_dataset=TextDataset(val_texts,val_labels,vocab,max_length)
     
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size)
+    train_loader=DataLoader(train_dataset,batch_size=batch_size,shuffle=True)
+    val_loader=DataLoader(val_dataset,batch_size=batch_size)
 
     
     #模型初始化

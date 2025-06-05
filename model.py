@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 class TextClassifier(nn.Module):
     def __init__(self,vocab_size,embedding_dim,hidden_dim,output_dim,bidirectional=True,dropout=0.4):
@@ -27,9 +26,9 @@ class TextClassifier(nn.Module):
 
         #处理双向LSTM的隐藏状态
         if self.bidirectional:
-            hidden = torch.cat([hidden[-2], hidden[-1]], dim=1) 
+            hidden=torch.cat([hidden[-2],hidden[-1]],dim=1) 
         else:
-            hidden = hidden[-1]  
+            hidden=hidden[-1]  
 
         hidden=self.dropout(hidden)
         hidden=self.fc(hidden)
