@@ -2,11 +2,10 @@ from sklearn.metrics import  roc_curve, auc
 from sklearn.preprocessing import label_binarize
 import matplotlib.pyplot as plt
 
-# 指定中文字体（根据系统安装的字体选择）
-plt.rcParams['font.sans-serif'] = ['WenQuanYi Zen Hei', 'SimHei', 'Microsoft YaHei']  # 按优先级尝试
-
-# 解决负号显示问题
-plt.rcParams['axes.unicode_minus'] = False
+#指定中文字体（根据系统安装的字体选择）
+plt.rcParams['font.sans-serif']=['WenQuanYi Zen Hei','SimHei','Microsoft YaHei']
+#解决负号显示问题
+plt.rcParams['axes.unicode_minus']=False
 
 #ROC曲线绘制
 def ROC(all_labels,all_preds):
